@@ -1,0 +1,16 @@
+version: "3.2"
+
+services:
+  selenium_hub:
+    image: selenium/hub
+    ports:
+    - 4444:4444
+
+  appium:
+    image: appium/appium
+    privileged: true
+    depends_on:
+    - selenium_hub
+    environment:
+    - CONNECT_TO_GRID=true
+    - SELENIUM_HOST=selenium_hub
